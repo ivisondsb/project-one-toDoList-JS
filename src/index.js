@@ -1,10 +1,20 @@
 const prompt = require('prompt-sync')();
 
+let listaDeTarefas = [];
+
 function iniciarApp() {
   while (true) {
     const opcao = menuInicial();
-    selecionarOpcao(opcao);
+    if (!selecionarOpcao(opcao)) {
+      console.log("Volte sempre!")
+      break;
+    }
   }
+}
+
+function querContinuar() {
+  const resposta = prompt('Deseja continuar? Digite "S" ou "N": ');
+  return resposta.toLowerCase() === 's';
 }
 
 function menuInicial() {
@@ -23,7 +33,7 @@ function menuInicial() {
 function selecionarOpcao(op) {
   switch (op) {
     case '1':
-      console.log("Testando a opção 1");
+      adicionarTarefa();
       break;
     case '2':
       console.log("Testando a opção 2");
@@ -38,11 +48,21 @@ function selecionarOpcao(op) {
       console.log("Testando a opção 5");
       break;
     case '6':
-      console.log("Saindo...");
-      process.exit(0); // Saindo do programa
+      console.log("Saindo do menu..");
+      break;
     default:
       console.log("Opção inválida");
   }
+
+  if (querContinuar()) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function adicionarTarefa() {
+
 }
 
 iniciarApp();
