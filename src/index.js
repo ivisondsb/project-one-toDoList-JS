@@ -6,7 +6,7 @@ function iniciarApp() {
   while (true) {
     const opcao = menuInicial();
     if (!selecionarOpcao(opcao)) {
-      console.log("Volte sempre!")
+      console.log("\nVolte sempre!")
       break;
     }
   }
@@ -36,22 +36,22 @@ function selecionarOpcao(op) {
       adicionarTarefa();
       break;
     case '2':
-      console.log("Testando a opção 2");
+      console.log("\nTestando a opção 2");
       break;
     case '3':
-      console.log("Testando a opção 3");
+      console.log("\nTestando a opção 3");
       break;
     case '4':
-      console.log("Testando a opção 4");
+      console.log("\nTestando a opção 4");
       break;
     case '5':
-      console.log("Testando a opção 5");
+      console.log("\nTestando a opção 5");
       break;
     case '6':
-      console.log("Saindo do menu..");
+      console.log("\nSaindo do menu..");
       break;
     default:
-      console.log("Opção inválida");
+      console.log("\nOpção inválida");
   }
 
   if (querContinuar()) {
