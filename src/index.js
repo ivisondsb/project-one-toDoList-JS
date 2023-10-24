@@ -72,28 +72,26 @@ function selecionarOpcao(op) {
 function adicionarTarefa() {
 
   console.log("\n======= Adicionar uma tarefa =======");
-  let novaTarefa = prompt('Digite a nova tarefa: ').trim(); // trim() elimina espaços desnecessários na string
+  let novaTarefa = prompt('Digite a nova tarefa: ').trim(); 
 
-  // Valida a entrada e repete caso seja inválido
   while (!novaTarefa || novaTarefa.length === 0) {
     console.log("\nPor favor, insira uma tarefa válida.");
     novaTarefa = prompt('Digite a nova tarefa: ').trim();
   }
 
-  // Valida se a tarefa adicionada já existe 
   const tarefaJaExiste = listaDeTarefas.map(tarefa => tarefa.tarefa.toLowerCase()).includes(novaTarefa.toLowerCase());
   if (tarefaJaExiste) {
     console.log("\nEsta tarefa já existe na lista de tarefas.");
   } else {
     const tarefaFormatado = novaTarefa.charAt(0).toUpperCase() + novaTarefa.slice(1).toLowerCase(); 
-    //criando o objeto
+    
     const novaTarefaObjeto = {
       id: listaDeTarefas.length + 1,
       tarefa: tarefaFormatado
     };
-    //adicionando o objeto na lista de tarefas
+    
     listaDeTarefas.push(novaTarefaObjeto);
-    console.log(`\nTarefa "${tarefaFormatado}" adicionada com sucesso com ID ${novaTarefaObjeto.id}!`); //mensagem de confirmação
+    console.log(`\nTarefa "${tarefaFormatado}" adicionada com sucesso com ID ${novaTarefaObjeto.id}!`); 
   }
 }
 
