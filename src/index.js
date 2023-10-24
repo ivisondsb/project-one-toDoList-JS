@@ -56,7 +56,6 @@ function selecionarOpcao(op) {
       console.log("\nTestando a opção 5");
       break;
     case '6':
-      console.log("\nPrograma encerrado!");
       return false;
     default:
       console.log("\nOpção inválida");
