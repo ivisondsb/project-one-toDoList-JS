@@ -4,9 +4,11 @@ let listaDeTarefas = [];
 
 function iniciarApp() {
   while (true) {
+    console.clear();
     const opcao = menuInicial();
     if (!selecionarOpcao(opcao)) {
-      console.log("\nPrograma encerrado!")
+      console.clear();
+      console.log("\nPrograma encerrado!\n")
       break;
     }
   }
@@ -20,7 +22,8 @@ function querContinuar() {
     } else if (resposta.toLowerCase().trim() === 'n') {
       return false;
     } else {
-      console.log("Ação incorreta. Por favor, digite 'S' para continuar ou 'N' para parar.");
+      console.clear();
+      console.log("Ação incorreta. Por favor, digite 'S' para continuar ou 'N' para parar.\n");
     }
   }
 }
@@ -32,7 +35,7 @@ function menuInicial() {
   console.log("3. Remover uma tarefa");
   console.log("4. Listar todas as tarefas");
   console.log("5. Obter uma tarefa por ID");
-  console.log("6. Sair");
+  console.log("6. Sair\n");
   const opcao = prompt('Escolha uma das opções acima: ');
 
   return opcao;
@@ -58,7 +61,8 @@ function selecionarOpcao(op) {
     case '6':
       return false;
     default:
-      console.log("\nOpção inválida");
+      console.clear();
+      console.log("\nOpção inválida.\n");
   }
 
   if (querContinuar()) {
@@ -69,21 +73,22 @@ function selecionarOpcao(op) {
 }
 
 function adicionarTarefa() {
+  console.clear();
+  console.log("\n======= Adicionar uma tarefa =======\n");
+  const novaTarefa = prompt('Digite a nova tarefa: ').trim();
 
-  console.log("\n======= Adicionar uma tarefa =======");
-  let novaTarefa = prompt('Digite a nova tarefa: ').trim(); 
-
-  while (!novaTarefa || novaTarefa.length === 0) {
+  while (!novaTarefa) {
     console.log("\nPor favor, insira uma tarefa válida.");
     novaTarefa = prompt('Digite a nova tarefa: ').trim();
   }
 
   const tarefaJaExiste = listaDeTarefas.map(tarefa => tarefa.tarefa.toLowerCase()).includes(novaTarefa.toLowerCase());
   if (tarefaJaExiste) {
-    console.log("\nEsta tarefa já existe na lista de tarefas.");
+    console.clear()
+    console.log("\nEsta tarefa já existe na lista de tarefas.\n");
   } else {
     const tarefaFormatado = novaTarefa.charAt(0).toUpperCase() + novaTarefa.slice(1).toLowerCase(); 
-    
+
     const novaTarefaObjeto = {
       id: listaDeTarefas.length + 1,
       tarefa: tarefaFormatado
