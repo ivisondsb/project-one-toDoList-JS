@@ -44,7 +44,7 @@ function menuInicial() {
 function selecionarOpcao(op) {
   switch (op) {
     case '1':
-      adicionarTarefa();
+      adicionarTarefa()
       break;
     case '2':
       console.log("\nTestando a opção 2");
@@ -53,7 +53,7 @@ function selecionarOpcao(op) {
       console.log("\nTestando a opção 3");
       break;
     case '4':
-      console.log(listaDeTarefas);
+      console.log("\nTestando a opção 4");
       break;
     case '5':
       console.log("\nTestando a opção 5");
@@ -87,15 +87,15 @@ function adicionarTarefa() {
     console.clear()
     console.log("\nEsta tarefa já existe na lista de tarefas.\n");
   } else {
-    const tarefaFormatado = novaTarefa.charAt(0).toUpperCase() + novaTarefa.slice(1).toLowerCase(); 
+    const tarefaFormatado = novaTarefa.charAt(0).toUpperCase() + novaTarefa.slice(1).toLowerCase();
 
     const novaTarefaObjeto = {
       id: listaDeTarefas.length + 1,
       tarefa: tarefaFormatado
     };
-    
+
     listaDeTarefas.push(novaTarefaObjeto);
-    console.log(`\nTarefa "${tarefaFormatado}" adicionada com sucesso com ID ${novaTarefaObjeto.id}!`); 
+    console.log(`\nTarefa "${tarefaFormatado}" adicionada com sucesso com ID ${novaTarefaObjeto.id}!`);
   }
 }
 
