@@ -50,27 +50,13 @@ function obterTarefaPorId() {
   } else {
     listarTarefas();
     const posicaoTarefa = parseInt(prompt('Digite a posição da tarefa que deseja obter: '));
-
-    if (posicaoTarefa >= 0 && posicaoTarefa < listaDeTarefas.length) {
-      const tarefaEncontrada = listaDeTarefas[posicaoTarefa];
-      console.log(`Tarefa encontrada (Posição ${posicaoTarefa}): ${tarefaEncontrada}`);
+    const posicaoDoItem = Number(posicaoTarefa) -1;
+    if (posicaoDoItem >= 0 && posicaoDoItem < listaDeTarefas.length) {
+      const tarefaEncontrada = listaDeTarefas[posicaoDoItem];
+      console.log(`Tarefa encontrada (Posição ${posicaoDoItem+1}): ${tarefaEncontrada}`);
     } else {
       console.log('Tarefa não encontrada. Posição inválida.');
     }
-  }
-}
-
-function listarTarefas() {
-  console.clear();
-  console.log("======= Lista de Tarefas =======");
-  
-  if (listaDeTarefas.length === 0) {
-    console.log("A lista de tarefas está vazia.");
-  } else {
-    console.log("Tarefas:");
-    listaDeTarefas.forEach((tarefa, index) => {
-      console.log(`[${index}] ${tarefa}`);
-    });
   }
 }
 
