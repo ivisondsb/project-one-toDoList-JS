@@ -41,6 +41,28 @@ function menuInicial() {
   return opcao;
 }
 
+function obterTarefaPorId() {
+  console.clear();
+  console.log("======= Obter Tarefa por ID =======");
+
+  if (listaDeTarefas.length === 0) {
+    console.log("A lista de tarefas está vazia.");
+  } else {
+    listarTarefas();
+    const idTarefa = parseInt(prompt('Digite o ID da tarefa que deseja obter: '));
+    const tarefaEncontrada = listaDeTarefas.find((tarefa) => tarefa.id === idTarefa);
+
+    if (tarefaEncontrada) {
+      console.log('Tarefa encontrada:');
+      console.log(`ID: ${tarefaEncontrada.id}`);
+      console.log(`Descrição: ${tarefaEncontrada.descricao}`);
+    } else {
+      console.log('Tarefa não encontrada.');
+    }
+  }
+}
+
+
 function selecionarOpcao(op) {
   switch (op) {
     case '1':
@@ -71,5 +93,7 @@ function selecionarOpcao(op) {
     return false;
   }
 }
+
+
 
 iniciarApp();
