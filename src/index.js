@@ -26,10 +26,32 @@ function querContinuar() {
       console.log("Ação incorreta. Por favor, digite 'S' para continuar ou 'N' para parar.\n");
     }
   }
+}2
+
+function editarTarefa() {
+  console.clear();
+  console.log("======= Editar Tarefa =======");
+
+  if (listaDeTarefas.length === 0) {
+    console.log("A lista de tarefas está vazia.");
+  } else {
+    listarTarefas();
+    const idTarefa = parseInt(prompt('Digite o ID da tarefa que deseja editar: '));
+    const tarefaParaEditar = listaDeTarefas.find((tarefa) => tarefa.id === idTarefa);
+    
+    if (tarefaParaEditar) {
+      const novaDescricao = prompt('Digite a nova descrição da tarefa: ');
+      tarefaParaEditar.descricao = novaDescricao;
+      console.log('Tarefa editada com sucesso!');
+    } else {
+      console.log('Tarefa não encontrada.');
+    }
+  }
 }
 
+
 function menuInicial() {
-  console.log("\n======= Menu =======");
+  console.log("\n======= Menu =======\n");
   console.log("1. Adicionar uma tarefa");
   console.log("2. Editar uma tarefa");
   console.log("3. Remover uma tarefa");
@@ -47,7 +69,7 @@ function selecionarOpcao(op) {
       console.log("\nTestando a opção 1");
       break;
     case '2':
-      console.log("\nTestando a opção 2");
+      editarTarefa();
       break;
     case '3':
       console.log("\nTestando a opção 3");
