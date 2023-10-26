@@ -86,7 +86,6 @@ function adicionarTarefa() {
   if (tarefaJaExiste) {
     console.clear();
     console.log("\nEsta tarefa já existe na lista de tarefas.\n");
-    return "Tarefa já existe na lista de tarefas.";
   } else {
     const tarefaFormatada = novaTarefa.charAt(0).toUpperCase() + novaTarefa.slice(1).toLowerCase();
 
