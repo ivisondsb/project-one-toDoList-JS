@@ -91,9 +91,7 @@ function adicionarTarefa() {
     const tarefaFormatada = novaTarefa.charAt(0).toUpperCase() + novaTarefa.slice(1).toLowerCase();
 
     listaDeTarefas.push(tarefaFormatada);
-    const mensagem = `Tarefa "${tarefaFormatada}" adicionada com sucesso!`;
-    console.log(`\n${mensagem}`);
-    return mensagem;
+    console.log(`\nTarefa "${tarefaFormatada}" adicionada com sucesso!\n`);
   }
 }
 
