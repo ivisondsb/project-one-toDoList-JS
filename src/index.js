@@ -44,7 +44,7 @@ function menuInicial() {
 function selecionarOpcao(op) {
   switch (op) {
     case '1':
-      adicionarTarefa()
+      console.log("\nTestando a opção 1");
       break;
     case '2':
       console.log("\nTestando a opção 2");
@@ -69,33 +69,6 @@ function selecionarOpcao(op) {
     return true;
   } else {
     return false;
-  }
-}
-
-function adicionarTarefa() {
-  console.clear();
-  console.log("\n======= Adicionar uma tarefa =======\n");
-  const novaTarefa = prompt('Digite a nova tarefa: ').trim();
-
-  while (!novaTarefa) {
-    console.log("\nPor favor, insira uma tarefa válida.");
-    novaTarefa = prompt('Digite a nova tarefa: ').trim();
-  }
-
-  const tarefaJaExiste = listaDeTarefas.map(tarefa => tarefa.tarefa.toLowerCase()).includes(novaTarefa.toLowerCase());
-  if (tarefaJaExiste) {
-    console.clear()
-    console.log("\nEsta tarefa já existe na lista de tarefas.\n");
-  } else {
-    const tarefaFormatado = novaTarefa.charAt(0).toUpperCase() + novaTarefa.slice(1).toLowerCase();
-
-    const novaTarefaObjeto = {
-      id: listaDeTarefas.length + 1,
-      tarefa: tarefaFormatado
-    };
-
-    listaDeTarefas.push(novaTarefaObjeto);
-    console.log(`\nTarefa "${tarefaFormatado}" adicionada com sucesso com ID ${novaTarefaObjeto.id}!`);
   }
 }
 
