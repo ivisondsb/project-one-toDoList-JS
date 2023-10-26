@@ -27,7 +27,7 @@ function querContinuar() {
     }
   }
 }
-dasd
+
 function menuInicial() {
   console.log("\n======= Menu =======");
   console.log("1. Adicionar uma tarefa");
@@ -49,7 +49,6 @@ function obterTarefaPorId() {
     console.log("A lista de tarefas está vazia.");
   } else {
     listarTarefas();
-    const idTarefa = parseInt(prompt('Digite o ID da tarefa que deseja obter: '));
     const tarefaEncontrada = listaDeTarefas.find((tarefa) => tarefa.id === idTarefa);
 
     if (tarefaEncontrada) {
@@ -59,6 +58,29 @@ function obterTarefaPorId() {
     } else {
       console.log('Tarefa não encontrada.');
     }
+  }
+}
+
+
+function adicionarTarefa() {
+  console.clear();
+  console.log("\n======= Adicionar uma tarefa =======\n");
+  let novaTarefa = prompt('Digite a nova tarefa: ').trim();
+
+  while (!novaTarefa) {
+    console.log("\nPor favor, insira uma tarefa válida.");
+    novaTarefa = prompt('Digite a nova tarefa: ').trim();
+  }
+
+  const tarefaJaExiste = listaDeTarefas.map(tarefa => tarefa.toLowerCase()).includes(novaTarefa.toLowerCase());
+  if (tarefaJaExiste) {
+    console.clear();
+    console.log("\nEsta tarefa já existe na lista de tarefas.\n");
+  } else {
+    const tarefaFormatada = novaTarefa.charAt(0).toUpperCase() + novaTarefa.slice(1).toLowerCase();
+
+    listaDeTarefas.push(tarefaFormatada);
+    console.log(`\nTarefa "${tarefaFormatada}" adicionada com sucesso!\n`);
   }
 }
 
@@ -78,7 +100,7 @@ function selecionarOpcao(op) {
       console.log("\nTestando a opção 4");
       break;
     case '5':
-      console.log("\nTestando a opção 5");
+      obterTarefaPorId(id);
       break;
     case '6':
       return false;
