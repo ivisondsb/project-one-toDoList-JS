@@ -60,6 +60,21 @@ function obterTarefaPorId() {
   }
 }
 
+function listarTarefas() {
+  console.clear();
+  console.log("======= Lista de Tarefas =======");
+  
+  if (listaDeTarefas.length === 0) {
+    console.log("A lista de tarefas está vazia.");
+  } else {
+    console.log("Tarefas:");
+    listaDeTarefas.forEach((tarefa, index) => {
+      console.log(`[${index}] ${tarefa}`);
+    });
+  }
+}
+
+
 
 function adicionarTarefa() {
   console.clear();
@@ -96,7 +111,7 @@ function selecionarOpcao(op) {
       console.log("\nTestando a opção 3");
       break;
     case '4':
-      console.log("\nTestando a opção 4");
+      listarTarefas();
       break;
     case '5':
       obterTarefaPorId();
