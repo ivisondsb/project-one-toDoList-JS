@@ -27,7 +27,7 @@ function querContinuar() {
     }
   }
 }
-
+dasd
 function menuInicial() {
   console.log("\n======= Menu =======");
   console.log("1. Adicionar uma tarefa");
