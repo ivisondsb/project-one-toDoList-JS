@@ -49,14 +49,13 @@ function obterTarefaPorId() {
     console.log("A lista de tarefas está vazia.");
   } else {
     listarTarefas();
-    const tarefaEncontrada = listaDeTarefas.find((tarefa) => tarefa.id === idTarefa);
+    const posicaoTarefa = parseInt(prompt('Digite a posição da tarefa que deseja obter: '));
 
-    if (tarefaEncontrada) {
-      console.log('Tarefa encontrada:');
-      console.log(`ID: ${tarefaEncontrada.id}`);
-      console.log(`Descrição: ${tarefaEncontrada.descricao}`);
+    if (posicaoTarefa >= 0 && posicaoTarefa < listaDeTarefas.length) {
+      const tarefaEncontrada = listaDeTarefas[posicaoTarefa];
+      console.log(`Tarefa encontrada (Posição ${posicaoTarefa}): ${tarefaEncontrada}`);
     } else {
-      console.log('Tarefa não encontrada.');
+      console.log('Tarefa não encontrada. Posição inválida.');
     }
   }
 }
@@ -88,7 +87,7 @@ function adicionarTarefa() {
 function selecionarOpcao(op) {
   switch (op) {
     case '1':
-      console.log("\nTestando a opção 1");
+      adicionarTarefa();
       break;
     case '2':
       console.log("\nTestando a opção 2");
@@ -100,7 +99,7 @@ function selecionarOpcao(op) {
       console.log("\nTestando a opção 4");
       break;
     case '5':
-      obterTarefaPorId(id);
+      obterTarefaPorId();
       break;
     case '6':
       return false;
