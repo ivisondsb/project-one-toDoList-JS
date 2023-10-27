@@ -72,7 +72,7 @@ function selecionarOpcao(op) {
       editarTarefa();
       break;
     case '3':
-      console.log("\nTestando a opção 3");
+      removerTarefa();
       break;
     case '4':
       console.log("\nTestando a opção 4");
@@ -91,6 +91,42 @@ function selecionarOpcao(op) {
     return true;
   } else {
     return false;
+  }
+}
+
+function removerTarefa() {
+  console.clear();
+
+  const tarefas = listaDeTarefas.length;
+
+  if (!tarefas) {
+    const aviso = console.log("\nNão existe nenhuma tarefa cadastrada.\n");
+    return aviso;
+  }
+
+  console.log("\n====== Remover Tarefas ======");
+  console.log("\nQual tarefa você quer deletar?\n");
+  console.log(listaDeTarefas, "\n");
+
+  let pegarId = prompt(
+    "Insira a posição da tarefa a qual deseja remover: "
+  ).trim();
+
+  const id = Number(pegarId);
+
+  if (id === 1) {
+    console.clear();
+    listaDeTarefas.shift();
+    console.log("\nTarefa Removida com sucesso!\n");
+  }
+  if (id > 1 && id <= tarefas) {
+    console.clear();
+    listaDeTarefas.splice(id - 1, 1);
+    console.log("\nTarefa Removida com sucesso!\n");
+  }
+  if (id > tarefas || id <= 0) {
+    console.clear();
+    console.log("\nErro: Posição Inválida.\n");
   }
 }
 
