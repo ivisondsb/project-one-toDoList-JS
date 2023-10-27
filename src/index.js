@@ -14,42 +14,6 @@ function iniciarApp() {
   }
 }
 
-function querContinuar() {
-  while (true) {
-    const resposta = prompt('Deseja continuar? Digite "S" para continuar ou "N" para parar: ');
-    if (resposta.toLowerCase().trim() === 's') {
-      return true;
-    } else if (resposta.toLowerCase().trim() === 'n') {
-      return false;
-    } else {
-      console.clear();
-      console.log("Ação incorreta. Por favor, digite 'S' para continuar ou 'N' para parar.\n");
-    }
-  }
-}2
-
-function editarTarefa() {
-  console.clear();
-  console.log("======= Editar Tarefa =======");
-
-  if (listaDeTarefas.length === 0) {
-    console.log("A lista de tarefas está vazia.");
-  } else {
-    listarTarefas();
-    const idTarefa = parseInt(prompt('Digite o ID da tarefa que deseja editar: '));
-    const tarefaParaEditar = listaDeTarefas.find((tarefa) => tarefa.id === idTarefa);
-    
-    if (tarefaParaEditar) {
-      const novaDescricao = prompt('Digite a nova descrição da tarefa: ');
-      tarefaParaEditar.descricao = novaDescricao;
-      console.log('Tarefa editada com sucesso!');
-    } else {
-      console.log('Tarefa não encontrada.');
-    }
-  }
-}
-
-
 function menuInicial() {
   console.log("\n======= Menu =======\n");
   console.log("1. Adicionar uma tarefa");
@@ -62,52 +26,6 @@ function menuInicial() {
 
   return opcao;
 }
-
-function obterTarefaPorId() {
-  console.clear();
-  console.log("======= Obter Tarefa por ID =======");
-
-  if (listaDeTarefas.length === 0) {
-    console.log("A lista de tarefas está vazia.");
-  } else {
-    listarTarefas();
-    const posicaoTarefa = parseInt(prompt('Digite a posição da tarefa que deseja obter: '));
-    const posicaoDoItem = Number(posicaoTarefa) -1;
-    if (posicaoDoItem >= 0 && posicaoDoItem < listaDeTarefas.length) {
-      const tarefaEncontrada = listaDeTarefas[posicaoDoItem];
-      console.log(`Tarefa encontrada (Posição ${posicaoDoItem+1}): ${tarefaEncontrada}`);
-    } else {
-      console.log('Tarefa não encontrada. Posição inválida.');
-    }
-  }
-}
-
-function listarTarefas() {
-    console.clear();
-    if (listaDeTarefas.length === 0) {
-      console.log(`Nenhuma tarefa registrada`);
-      const resposta = prompt(
-        'Deseja adicionar uma tarefa? "S" para adicionar ou "N" para parar: '
-      );
-      if (resposta.toLowerCase().trim() === "s") {
-        adicionarTarefa();
-      } else if (resposta.toLowerCase().trim() === "n") {
-        console.clear()
-        return false;
-      } else {
-        console.clear();
-        console.log(
-          "Ação incorreta. Por favor, digite 'S' para continuar ou 'N' para parar.\n"
-        );
-      }
-    } else {
-      console.log(`\n======= Tarefas =======`);
-      for (const tarefa of listaDeTarefas) {
-        console.log(`- ${tarefa}`);
-      }
-      console.log('\n')
-    }
-  }
 
 function adicionarTarefa() {
   console.clear();
@@ -131,38 +49,26 @@ function adicionarTarefa() {
   }
 }
 
+function editarTarefa() {
+  console.clear();
+  console.log("======= Editar Tarefa =======");
 
-function selecionarOpcao(op) {
-  switch (op) {
-    case '1':
-      adicionarTarefa();
-      break;
-    case '2':
-      editarTarefa();
-      break;
-    case '3':
-      removerTarefa();
-      break;
-    case '4':
-      listarTarefas();
-      break;
-    case '5':
-      obterTarefaPorId();
-      break;
-    case '6':
-      return false;
-    default:
-      console.clear();
-      console.log("\nOpção inválida.\n");
-  }
-
-  if (querContinuar()) {
-    return true;
+  if (listaDeTarefas.length === 0) {
+    console.log("A lista de tarefas está vazia.");
   } else {
-    return false;
+    listarTarefas();
+    const idTarefa = parseInt(prompt('Digite o ID da tarefa que deseja editar: '));
+    const tarefaParaEditar = listaDeTarefas.find((tarefa) => tarefa.id === idTarefa);
+    
+    if (tarefaParaEditar) {
+      const novaDescricao = prompt('Digite a nova descrição da tarefa: ');
+      tarefaParaEditar.descricao = novaDescricao;
+      console.log('Tarefa editada com sucesso!');
+    } else {
+      console.log('Tarefa não encontrada.');
+    }
   }
 }
-
 
 function removerTarefa() {
   console.clear();
@@ -201,6 +107,97 @@ function removerTarefa() {
 }
 
 function listarTarefas() {
+  console.clear();
+  if (listaDeTarefas.length === 0) {
+    console.log(`Nenhuma tarefa registrada`);
+    const resposta = prompt(
+      'Deseja adicionar uma tarefa? "S" para adicionar ou "N" para parar: '
+    );
+    if (resposta.toLowerCase().trim() === "s") {
+      adicionarTarefa();
+    } else if (resposta.toLowerCase().trim() === "n") {
+      console.clear()
+      return false;
+    } else {
+      console.clear();
+      console.log(
+        "Ação incorreta. Por favor, digite 'S' para continuar ou 'N' para parar.\n"
+      );
+    }
+  } else {
+    console.log(`\n======= Tarefas =======`);
+    for (const tarefa of listaDeTarefas) {
+      console.log(`- ${tarefa}`);
+    }
+    console.log('\n')
+  }
+}
+
+function obterTarefaPorId() {
+  console.clear();
+  console.log("======= Obter Tarefa por ID =======");
+
+  if (listaDeTarefas.length === 0) {
+    console.log("A lista de tarefas está vazia.");
+  } else {
+    listarTarefas();
+    const posicaoTarefa = parseInt(prompt('Digite a posição da tarefa que deseja obter: '));
+    const posicaoDoItem = Number(posicaoTarefa) -1;
+    if (posicaoDoItem >= 0 && posicaoDoItem < listaDeTarefas.length) {
+      const tarefaEncontrada = listaDeTarefas[posicaoDoItem];
+      console.log(`Tarefa encontrada (Posição ${posicaoDoItem+1}): ${tarefaEncontrada}`);
+    } else {
+      console.log('Tarefa não encontrada. Posição inválida.');
+    }
+  }
+}
+
+function querContinuar() {
+  while (true) {
+    const resposta = prompt('Deseja continuar? Digite "S" para continuar ou "N" para parar: ');
+    if (resposta.toLowerCase().trim() === 's') {
+      return true;
+    } else if (resposta.toLowerCase().trim() === 'n') {
+      return false;
+    } else {
+      console.clear();
+      console.log("Ação incorreta. Por favor, digite 'S' para continuar ou 'N' para parar.\n");
+    }
+  }
+}
+
+function selecionarOpcao(op) {
+  switch (op) {
+    case '1':
+      adicionarTarefa();
+      break;
+    case '2':
+      editarTarefa();
+      break;
+    case '3':
+      removerTarefa();
+      break;
+    case '4':
+      listarTarefas();
+      break;
+    case '5':
+      obterTarefaPorId();
+      break;
+    case '6':
+      return false;
+    default:
+      console.clear();
+      console.log("\nOpção inválida.\n");
+  }
+
+  if (querContinuar()) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function listarTarefas() {
     console.clear();
     if (listaDeTarefas.length === 0) {
       console.log(`Nenhuma tarefa registrada`);
@@ -227,4 +224,3 @@ function listarTarefas() {
     }
   }
   iniciarApp();
-
