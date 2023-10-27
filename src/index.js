@@ -1,4 +1,4 @@
-const prompt = require("prompt-sync")();
+const prompt = require('prompt-sync')();
 
 let listaDeTarefas = [];
 
@@ -8,7 +8,7 @@ function iniciarApp() {
     const opcao = menuInicial();
     if (!selecionarOpcao(opcao)) {
       console.clear();
-      console.log("\nPrograma encerrado!\n");
+      console.log("\nPrograma encerrado!\n")
       break;
     }
   }
@@ -16,18 +16,14 @@ function iniciarApp() {
 
 function querContinuar() {
   while (true) {
-    const resposta = prompt(
-      'Deseja continuar? Digite "S" para continuar ou "N" para parar: '
-    );
-    if (resposta.toLowerCase().trim() === "s") {
+    const resposta = prompt('Deseja continuar? Digite "S" para continuar ou "N" para parar: ');
+    if (resposta.toLowerCase().trim() === 's') {
       return true;
-    } else if (resposta.toLowerCase().trim() === "n") {
+    } else if (resposta.toLowerCase().trim() === 'n') {
       return false;
     } else {
       console.clear();
-      console.log(
-        "Ação incorreta. Por favor, digite 'S' para continuar ou 'N' para parar.\n"
-      );
+      console.log("Ação incorreta. Por favor, digite 'S' para continuar ou 'N' para parar.\n");
     }
   }
 }
@@ -40,29 +36,73 @@ function menuInicial() {
   console.log("4. Listar todas as tarefas");
   console.log("5. Obter uma tarefa por ID");
   console.log("6. Sair\n");
-  const opcao = prompt("Escolha uma das opções acima: ");
+  const opcao = prompt('Escolha uma das opções acima: ');
 
   return opcao;
 }
 
+function obterTarefaPorId() {
+  console.clear();
+  console.log("======= Obter Tarefa por ID =======");
+
+  if (listaDeTarefas.length === 0) {
+    console.log("A lista de tarefas está vazia.");
+  } else {
+    listarTarefas();
+    const posicaoTarefa = parseInt(prompt('Digite a posição da tarefa que deseja obter: '));
+    const posicaoDoItem = Number(posicaoTarefa) -1;
+    if (posicaoDoItem >= 0 && posicaoDoItem < listaDeTarefas.length) {
+      const tarefaEncontrada = listaDeTarefas[posicaoDoItem];
+      console.log(`Tarefa encontrada (Posição ${posicaoDoItem+1}): ${tarefaEncontrada}`);
+    } else {
+      console.log('Tarefa não encontrada. Posição inválida.');
+    }
+  }
+}
+
+
+
+function adicionarTarefa() {
+  console.clear();
+  console.log("\n======= Adicionar uma tarefa =======\n");
+  let novaTarefa = prompt('Digite a nova tarefa: ').trim();
+
+  while (!novaTarefa) {
+    console.log("\nPor favor, insira uma tarefa válida.");
+    novaTarefa = prompt('Digite a nova tarefa: ').trim();
+  }
+
+  const tarefaJaExiste = listaDeTarefas.map(tarefa => tarefa.toLowerCase()).includes(novaTarefa.toLowerCase());
+  if (tarefaJaExiste) {
+    console.clear();
+    console.log("\nEsta tarefa já existe na lista de tarefas.\n");
+  } else {
+    const tarefaFormatada = novaTarefa.charAt(0).toUpperCase() + novaTarefa.slice(1).toLowerCase();
+
+    listaDeTarefas.push(tarefaFormatada);
+    console.log(`\nTarefa "${tarefaFormatada}" adicionada com sucesso!\n`);
+  }
+}
+
+
 function selecionarOpcao(op) {
   switch (op) {
-    case "1":
+    case '1':
       adicionarTarefa();
       break;
-    case "2":
+    case '2':
       console.log("\nTestando a opção 2");
       break;
-    case "3":
+    case '3':
       console.log("\nTestando a opção 3");
       break;
-    case "4":
+    case '4':
       listarTarefas();
       break;
-    case "5":
-      console.log("\nTestando a opção 5");
+    case '5':
+      obterTarefaPorId();
       break;
-    case "6":
+    case '6':
       return false;
     default:
       console.clear();
@@ -76,55 +116,30 @@ function selecionarOpcao(op) {
   }
 }
 
-function adicionarTarefa() {
-  console.clear();
-  console.log("\n======= Adicionar uma tarefa =======\n");
-  let novaTarefa = prompt("Digite a nova tarefa: ").trim();
-
-  while (!novaTarefa) {
-    console.log("\nPor favor, insira uma tarefa válida.");
-    novaTarefa = prompt("Digite a nova tarefa: ").trim();
-  }
-
-  const tarefaJaExiste = listaDeTarefas
-    .map((tarefa) => tarefa.toLowerCase())
-    .includes(novaTarefa.toLowerCase());
-  if (tarefaJaExiste) {
-    console.clear();
-    console.log("\nEsta tarefa já existe na lista de tarefas.\n");
-  } else {
-    const tarefaFormatada =
-      novaTarefa.charAt(0).toUpperCase() + novaTarefa.slice(1).toLowerCase();
-
-    listaDeTarefas.push(tarefaFormatada);
-    console.log(`\nTarefa "${tarefaFormatada}" adicionada com sucesso!\n`);
-  }
-}
-
 function listarTarefas() {
-  console.clear();
-  if (listaDeTarefas.length === 0) {
-    console.log(`Nenhuma tarefa registrada`);
-    const resposta = prompt(
-      'Deseja adicionar uma tarefa? "S" para adicionar ou "N" para parar: '
-    );
-    if (resposta.toLowerCase().trim() === "s") {
-      adicionarTarefa();
-    } else if (resposta.toLowerCase().trim() === "n") {
-      console.clear()
-      return false;
-    } else {
-      console.clear();
-      console.log(
-        "Ação incorreta. Por favor, digite 'S' para continuar ou 'N' para parar.\n"
+    console.clear();
+    if (listaDeTarefas.length === 0) {
+      console.log(`Nenhuma tarefa registrada`);
+      const resposta = prompt(
+        'Deseja adicionar uma tarefa? "S" para adicionar ou "N" para parar: '
       );
+      if (resposta.toLowerCase().trim() === "s") {
+        adicionarTarefa();
+      } else if (resposta.toLowerCase().trim() === "n") {
+        console.clear()
+        return false;
+      } else {
+        console.clear();
+        console.log(
+          "Ação incorreta. Por favor, digite 'S' para continuar ou 'N' para parar.\n"
+        );
+      }
+    } else {
+      console.log(`\n======= Tarefas =======`);
+      for (const tarefa of listaDeTarefas) {
+        console.log(`- ${tarefa}`);
+      }
+      console.log('\n')
     }
-  } else {
-    console.log(`\n======= Tarefas =======`);
-    for (const tarefa of listaDeTarefas) {
-      console.log(`- ${tarefa}`);
-    }
-    console.log('\n')
   }
-}
-iniciarApp();
+  iniciarApp();
