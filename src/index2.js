@@ -1,6 +1,6 @@
 const readline = require('readline');
 
-let produtos = [];
+let tarefas = [];
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -29,60 +29,60 @@ function exibirMenu() {
     switch (opcao) {
       case '1':
         console.clear();
-        let produto = await askQuestion('Digite o nome do produto: ');
-        produtos.push(produto);
-        console.log('Produto cadastrado com sucesso!');
+        let tarefa = await askQuestion('Digite o nome da tarefa: ');
+        tarefas.push(tarefa);
+        console.log('Tarefa cadastrada com sucesso!');
         break;
       case '2':
         console.clear();
-        if (produtos.length === 0) {
-          console.log('Nenhum produto cadastrado.');
+        if (tarefas.length === 0) {
+          console.log('Nenhuma tarefa cadastrada.');
         } else {
-          console.log('***** PRODUTOS CADASTRADOS *****');
-          produtos.forEach((produto, index) => {
-            console.log(`${index + 1}: ${produto}`);
+          console.log('***** TAREFAS CADASTRADAS *****');
+          tarefas.forEach((tarefa, index) => {
+            console.log(`${index + 1}: ${tarefa}`);
           });
         }
         break;
       case '3':
         console.clear();
-				console.log(produtos);
-        let editar = await askQuestion('Digite o nome do produto a ser editado: ');
-        let novoProduto = await askQuestion('Digite o novo nome do produto: ');
+				console.log(tarefas);
+        let editar = await askQuestion('Digite o nome da tarefa a ser editado: ');
+        let novotarefa = await askQuestion('Digite o novo nome da tarefa: ');
 
-        const indiceEditar = produtos.findIndex((produto) => produto === editar);
+        const indiceEditar = tarefas.findIndex((tarefa) => tarefa === editar);
 
         if (indiceEditar !== -1) {
-          produtos[indiceEditar] = novoProduto;
-          console.log('Produto editado com sucesso!');
+          tarefas[indiceEditar] = novotarefa;
+          console.log('tarefa editada com sucesso!');
         } else {
-          console.log('Produto não encontrado!');
+          console.log('tarefa não encontrada!');
         }
         break;
       case '4':
 				console.clear();
-				console.log(produtos);
-				let id = await askQuestion('Digite o ID do produto: ');
+				console.log(tarefas);
+				let id = await askQuestion('Digite o ID da tarefa: ');
 				const indice = id - 1;
 
-				if (indice >= 0 && indice < produtos.length) {
-					console.log(`Produto: ${produtos[indice]}`);
+				if (indice >= 0 && indice < tarefas.length) {
+					console.log(`Tarefa: ${tarefas[indice]}`);
 				} else {
-					console.log('Produto não encontrado!');
+					console.log('Tarefa não encontrada!');
 				}
 				break;
       case '5':
         console.clear();
-				console.log(produtos);
-        let remover = await askQuestion('Digite o nome do produto a ser removido: ');
+				console.log(tarefas);
+        let remover = await askQuestion('Digite o nome da tarefa a ser removida: ');
 
-        const indiceRemocao = produtos.findIndex((produto) => produto === remover);
+        const indiceRemocao = tarefas.findIndex((tarefa) => tarefa === remover);
 
         if (indiceRemocao !== -1) {
-          produtos.splice(indiceRemocao, 1);
-          console.log('Produto removido com sucesso!');
+          tarefas.splice(indiceRemocao, 1);
+          console.log('Tarefa removida com sucesso!');
         } else {
-          console.log('Produto não encontrado!');
+          console.log('Tarefa não encontrada!');
         }
         break;
       case '6':
