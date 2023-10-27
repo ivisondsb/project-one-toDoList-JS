@@ -59,9 +59,9 @@ function editarTarefa() {
     listarTarefas();
     const idTarefa = parseInt(prompt('Digite o ID da tarefa que deseja editar: '));
     
-    if (idTarefa >= 0 && idTarefa < listaDeTarefas.length) {
+    if (idTarefa >= 0 && idTarefa <= listaDeTarefas.length) {
       const novaDescricao = prompt('Digite a nova descrição da tarefa: ');
-      listaDeTarefas[idTarefa -1] = novaDescricao;
+      listaDeTarefas[idTarefa - 1] = novaDescricao.charAt(0).toUpperCase() + novaDescricao.slice(1).toLowerCase();
       console.log('Tarefa editada com sucesso!');
     } else {
       console.log('Tarefa não encontrada.');
