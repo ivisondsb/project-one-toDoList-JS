@@ -22,6 +22,7 @@ function menuInicial() {
   console.log("4. Listar todas as tarefas");
   console.log("5. Obter uma tarefa por ID");
   console.log("6. Sair\n");
+
   const opcao = prompt("Escolha uma das opções acima: ");
 
   return opcao;
@@ -30,7 +31,7 @@ function menuInicial() {
 function selecionarOpcao(op) {
   switch (op) {
     case "1":
-      adicionarTarefa();
+      console.log("\nTestando a opção 1");
       break;
     case "2":
       console.log("\nTestando a opção 2");
@@ -39,14 +40,7 @@ function selecionarOpcao(op) {
       removerTarefa();
       break;
     case "4":
-      if (!listaDeTarefas[0]) {
-        console.clear();
-        console.log("\nNão existe nenhuma tarefa cadastrada.\n");
-      } else {
-        console.clear();
-        console.log("\nEssas são as suas tarefas:\n");
-        console.log(listaDeTarefas, "\n");
-      }
+      console.log("\nTestando a opção 4");
       break;
     case "5":
       console.log("\nTestando a opção 5");
