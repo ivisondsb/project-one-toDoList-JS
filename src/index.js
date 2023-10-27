@@ -60,7 +60,32 @@ function obterTarefaPorId() {
   }
 }
 
-
+function listarTarefas() {
+    console.clear();
+    if (listaDeTarefas.length === 0) {
+      console.log(`Nenhuma tarefa registrada`);
+      const resposta = prompt(
+        'Deseja adicionar uma tarefa? "S" para adicionar ou "N" para parar: '
+      );
+      if (resposta.toLowerCase().trim() === "s") {
+        adicionarTarefa();
+      } else if (resposta.toLowerCase().trim() === "n") {
+        console.clear()
+        return false;
+      } else {
+        console.clear();
+        console.log(
+          "Ação incorreta. Por favor, digite 'S' para continuar ou 'N' para parar.\n"
+        );
+      }
+    } else {
+      console.log(`\n======= Tarefas =======`);
+      for (const tarefa of listaDeTarefas) {
+        console.log(`- ${tarefa}`);
+      }
+      console.log('\n')
+    }
+  }
 
 function adicionarTarefa() {
   console.clear();
