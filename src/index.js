@@ -28,24 +28,68 @@ function menuInicial() {
   return opcao;
 }
 
+function obterTarefaPorId() {
+  console.clear();
+  console.log("======= Obter Tarefa por ID =======");
+
+  if (listaDeTarefas.length === 0) {
+    console.log("A lista de tarefas está vazia.");
+  } else {
+    listarTarefas();
+    const posicaoTarefa = parseInt(prompt('Digite a posição da tarefa que deseja obter: '));
+    const posicaoDoItem = Number(posicaoTarefa) -1;
+    if (posicaoDoItem >= 0 && posicaoDoItem < listaDeTarefas.length) {
+      const tarefaEncontrada = listaDeTarefas[posicaoDoItem];
+      console.log(`Tarefa encontrada (Posição ${posicaoDoItem+1}): ${tarefaEncontrada}`);
+    } else {
+      console.log('Tarefa não encontrada. Posição inválida.');
+    }
+  }
+}
+
+
+
+function adicionarTarefa() {
+  console.clear();
+  console.log("\n======= Adicionar uma tarefa =======\n");
+  let novaTarefa = prompt('Digite a nova tarefa: ').trim();
+
+  while (!novaTarefa) {
+    console.log("\nPor favor, insira uma tarefa válida.");
+    novaTarefa = prompt('Digite a nova tarefa: ').trim();
+  }
+
+  const tarefaJaExiste = listaDeTarefas.map(tarefa => tarefa.toLowerCase()).includes(novaTarefa.toLowerCase());
+  if (tarefaJaExiste) {
+    console.clear();
+    console.log("\nEsta tarefa já existe na lista de tarefas.\n");
+  } else {
+    const tarefaFormatada = novaTarefa.charAt(0).toUpperCase() + novaTarefa.slice(1).toLowerCase();
+
+    listaDeTarefas.push(tarefaFormatada);
+    console.log(`\nTarefa "${tarefaFormatada}" adicionada com sucesso!\n`);
+  }
+}
+
+
 function selecionarOpcao(op) {
   switch (op) {
-    case "1":
-      console.log("\nTestando a opção 1");
+    case '1':
+      adicionarTarefa();
       break;
-    case "2":
+    case '2':
       console.log("\nTestando a opção 2");
       break;
-    case "3":
+    case '3':
       removerTarefa();
       break;
-    case "4":
-      console.log("\nTestando a opção 4");
+    case '4':
+      listarTarefas();
       break;
-    case "5":
-      console.log("\nTestando a opção 5");
+    case '5':
+      obterTarefaPorId();
       break;
-    case "6":
+    case '6':
       return false;
     default:
       console.clear();
