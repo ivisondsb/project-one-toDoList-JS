@@ -8,7 +8,7 @@ function iniciarApp() {
     const opcao = menuInicial();
     if (!selecionarOpcao(opcao)) {
       console.clear();
-      if(listaDeTarefas){ //só executa se houver coisa na lista.
+      if(listaDeTarefas){
         console.log("\nSua lista ficou:\n")
         for (let i = 0; i < listaDeTarefas.length; i++){
           console.log(`${i+1}: ${listaDeTarefas[i]}`);
